@@ -29,7 +29,7 @@ public class GitHubClient : IGitHubClient
         if (!string.IsNullOrEmpty(options.PersonalAccessToken))
         {
             // https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token
-            HttpClient.DefaultRequestHeaders.Add("Authorization", options.PersonalAccessToken);
+            HttpClient.DefaultRequestHeaders.Add("Authorization", $"token {options.PersonalAccessToken}");
         }
     }
 
