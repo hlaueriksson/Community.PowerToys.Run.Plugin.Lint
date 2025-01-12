@@ -5,12 +5,10 @@
     <TargetFramework>net9.0</TargetFramework>
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>ptrun-lint</ToolCommandName>
-    <Version>0.4.0</Version>
+    <Version>0.4.1</Version>
     <PackageReleaseNotes>
-New:
-- Lint a package on the local filesystem
-- Lint a project on the local filesystem
-- Save a GitHub Personal Access Token
+- Fix authorization with PersonalAccessToken
+- Bump Directory.Packages.props.xml
     </PackageReleaseNotes>
     <Authors>Henrik Lau Eriksson</Authors>
     <Description>Linter for PowerToys Run community plugins</Description>
