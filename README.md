@@ -1,7 +1,9 @@
 # Community.PowerToys.Run.Plugin.Lint
 
 [![build](https://github.com/hlaueriksson/Community.PowerToys.Run.Plugin.Lint/actions/workflows/build.yml/badge.svg)](https://github.com/hlaueriksson/Community.PowerToys.Run.Plugin.Lint/actions/workflows/build.yml)
+[![Snyk Security Scan](https://github.com/hlaueriksson/Community.PowerToys.Run.Plugin.Lint/actions/workflows/snyk.yml/badge.svg)](https://github.com/hlaueriksson/Community.PowerToys.Run.Plugin.Lint/actions/workflows/snyk.yml)
 [![Community.PowerToys.Run.Plugin.Lint](https://img.shields.io/nuget/v/Community.PowerToys.Run.Plugin.Lint.svg?label=Community.PowerToys.Run.Plugin.Lint)](https://www.nuget.org/packages/Community.PowerToys.Run.Plugin.Lint)
+[![Mentioned in Awesome PowerToys Run Plugins](https://awesome.re/mentioned-badge.svg)](https://github.com/hlaueriksson/awesome-powertoys-run-plugins)
 
 > Linter for PowerToys Run community plugins
 
