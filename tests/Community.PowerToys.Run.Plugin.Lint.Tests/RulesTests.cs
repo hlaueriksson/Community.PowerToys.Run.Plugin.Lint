@@ -225,31 +225,31 @@ namespace Community.PowerToys.Run.Plugin.Lint.Tests
             package.Load();
             subject = new PackageChecksumRules(new() { body = "" }, package, []);
             subject.Validate().Clean().Should().BeEquivalentTo(
-                "Hash \"C2D1C03203B769563C62FD17517333849E630B721F4565BCD05D0B8720F6C6BD\" missing");
+                "Hash \"343F000FE24F6EB3A24E9D1A09D19280BC94204A65C640141007992D3C513CFD\" missing");
 
             subject = new PackageChecksumRules(new() { body = "" }, package, null!);
             subject.Validate().Clean().Should().BeEquivalentTo(
-                "Hash \"C2D1C03203B769563C62FD17517333849E630B721F4565BCD05D0B8720F6C6BD\" missing");
+                "Hash \"343F000FE24F6EB3A24E9D1A09D19280BC94204A65C640141007992D3C513CFD\" missing");
 
             var release = new Release
             {
-                body = "C2D1C03203B769563C62FD17517333849E630B721F4565BCD05D0B8720F6C6BD",
+                body = "343F000FE24F6EB3A24E9D1A09D19280BC94204A65C640141007992D3C513CFD",
             };
             subject = new PackageChecksumRules(release, package, []);
             subject.Validate().Clean().Should().BeEmpty();
 
             release = new Release
             {
-                body = "c2d1c03203b769563c62fd17517333849e630b721f4565bcd05d0b8720f6c6bd",
+                body = "343f000fe24f6eb3a24e9d1a09d19280bc94204a65c640141007992d3c513cfd",
             };
             subject = new PackageChecksumRules(release, package, []);
             subject.Validate().Clean().Should().BeEmpty();
 
-            var checksum = new Checksum("C2D1C03203B769563C62FD17517333849E630B721F4565BCD05D0B8720F6C6BD", "Valid-0.87.0-x64.zip");
+            var checksum = new Checksum("343F000FE24F6EB3A24E9D1A09D19280BC94204A65C640141007992D3C513CFD", "Valid-0.87.0-x64.zip");
             subject = new PackageChecksumRules(new() { body = "" }, package, [checksum]);
             subject.Validate().Clean().Should().BeEmpty();
 
-            checksum = new Checksum("c2d1c03203b769563c62fd17517333849e630b721f4565bcd05d0b8720f6c6bd", "Valid-0.87.0-x64.zip");
+            checksum = new Checksum("343f000fe24f6eb3a24e9d1a09d19280bc94204a65c640141007992d3c513cfd", "Valid-0.87.0-x64.zip");
             subject = new PackageChecksumRules(new() { body = "" }, package, [checksum]);
             subject.Validate().Clean().Should().BeEmpty();
         }
@@ -363,6 +363,7 @@ namespace Community.PowerToys.Run.Plugin.Lint.Tests
             subject.Validate().Clean().Should().BeEquivalentTo(
                 "Target framework should be \"net9.0\"",
                 "Target platform should be \"windows\"",
+                "Assembly version does not match metadata (plugin.json) Version",
                 "Main.PluginID does not match metadata (plugin.json) ID");
 
             package = new Package(@"..\..\..\Packages\Valid-0.87.0-x64.zip");

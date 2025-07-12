@@ -362,6 +362,8 @@ public class AssemblyRules(Package package) : IRule
         if (!package.HasValidTargetFramework()) yield return $"Target framework should be {"net9.0".ToQuote()}";
         if (!package.HasValidTargetPlatform()) yield return $"Target platform should be {"windows".ToQuote()}";
 
+        if (package.AssemblyDefinition.Name.Version.ToString(3) != package.Metadata?.Version) yield return $"Assembly version does not match metadata {"plugin.json".ToFilename()} Version";
+
         var pluginId = PluginID(MainTypeDefinition());
         if (pluginId != package.Metadata?.ID) yield return $"Main.PluginID does not match metadata {"plugin.json".ToFilename()} ID";
 
