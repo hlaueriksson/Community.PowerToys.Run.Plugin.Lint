@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Text;
 using FluentAssertions;
 using Spectre.Console;
@@ -412,6 +413,7 @@ namespace Community.PowerToys.Run.Plugin.Lint.Tests
             subject.Validate().Clean().Should().BeEquivalentTo(
                 "Project missing");
 
+            Build(@"..\..\..\Projects\Invalid");
             var project = new Project(@"..\..\..\Projects\Invalid");
             await project.LoadAsync();
             subject = new ProjectDependenciesRules(project);
@@ -419,10 +421,23 @@ namespace Community.PowerToys.Run.Plugin.Lint.Tests
                 "Unnecessary dependency: Newtonsoft.Json, consider using System.Text.Json",
                 "Inconstant dependency version: LazyCache, use version \"2.4.0\" as defined in Central Package Management (Directory.Packages.props)");
 
+            Build(@"..\..\..\Projects\Valid");
             project = new Project(@"..\..\..\Projects\Valid");
             await project.LoadAsync();
             subject = new ProjectDependenciesRules(project);
             subject.Validate().Clean().Should().BeEmpty();
+
+            void Build(string path)
+            {
+                var info = new ProcessStartInfo
+                {
+                    FileName = "dotnet",
+                    Arguments = $"build {path}",
+                    UseShellExecute = false
+                };
+                using var process = Process.Start(info);
+                process?.WaitForExit();
+            }
         }
 
         [Test]
