@@ -320,9 +320,15 @@ public class PluginDependenciesRules(Package package) : IRule
         }
 
         var files = Files();
+
         foreach (var dependency in PowerToysRunDependencies())
         {
             if (files.Contains(dependency)) yield return $"Unnecessary dependency: {dependency.ToDependency()}";
+        }
+
+        foreach (var dependency in PowerToysRunDebugDependencies())
+        {
+            if (files.Contains(dependency)) yield return $"Unnecessary debug dependency: {dependency.ToDependency()}";
         }
 
         if (files.Contains("Newtonsoft.Json.dll")) yield return $"Unnecessary dependency: {"Newtonsoft.Json".ToDependency()}, consider using {"System.Text.Json".ToDependency()}";
@@ -334,6 +340,7 @@ public class PluginDependenciesRules(Package package) : IRule
 
         string[] Files() => [.. package.ZipArchive.Entries.Select(x => x.Name)];
         string[] PowerToysRunDependencies() => ["PowerToys.Common.UI.dll", "PowerToys.ManagedCommon.dll", "PowerToys.Settings.UI.Lib.dll", "Wox.Infrastructure.dll", "Wox.Plugin.dll"];
+        string[] PowerToysRunDebugDependencies() => ["PowerToys.Common.UI.pdb", "PowerToys.ManagedCommon.pdb", "PowerToys.Settings.UI.Lib.pdb", "Wox.Infrastructure.pdb", "Wox.Plugin.pdb"];
         string[] PowerToysPackages()
         {
             var content = "Directory.Packages.props.xml".GetEmbeddedResourceContent();

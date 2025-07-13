@@ -341,6 +341,11 @@ namespace Community.PowerToys.Run.Plugin.Lint.Tests
                 "Unnecessary dependency: PowerToys.Settings.UI.Lib.dll",
                 "Unnecessary dependency: Wox.Infrastructure.dll",
                 "Unnecessary dependency: Wox.Plugin.dll",
+                "Unnecessary debug dependency: PowerToys.Common.UI.pdb",
+                "Unnecessary debug dependency: PowerToys.ManagedCommon.pdb",
+                "Unnecessary debug dependency: PowerToys.Settings.UI.Lib.pdb",
+                "Unnecessary debug dependency: Wox.Infrastructure.pdb",
+                "Unnecessary debug dependency: Wox.Plugin.pdb",
                 "Unnecessary dependency: Newtonsoft.Json, consider using System.Text.Json",
                 "Unnecessary dependency: LazyCache, already defined in Central Package Management (Directory.Packages.props)");
 
