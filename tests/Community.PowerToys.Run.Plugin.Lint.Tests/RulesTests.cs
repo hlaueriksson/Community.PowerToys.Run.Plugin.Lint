@@ -427,7 +427,7 @@ namespace Community.PowerToys.Run.Plugin.Lint.Tests
             subject = new ProjectDependenciesRules(project);
             subject.Validate().Clean().Should().BeEmpty();
 
-            void Build(string path)
+            static void Build(string path)
             {
                 var info = new ProcessStartInfo
                 {
@@ -486,7 +486,7 @@ namespace Community.PowerToys.Run.Plugin.Lint.Tests
         }
     }
 
-    file static class RulesTestsExtensions
+    static file class RulesTestsExtensions
     {
         public static IEnumerable<string> Clean(this IEnumerable<string> messages) => messages.Select(Markup.Remove);
     }

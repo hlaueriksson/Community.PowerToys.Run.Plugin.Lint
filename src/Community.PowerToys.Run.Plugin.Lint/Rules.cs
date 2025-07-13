@@ -221,10 +221,9 @@ public class PackageContentRules(Package package) : IRule
         string[] EmptyFolders()
         {
             var folders = package.ZipArchive.Entries.Where(x => x.FullName.EndsWith('/') || x.FullName.EndsWith('\\'));
-            return folders
+            return [.. folders
                 .Where(x => package.ZipArchive.Entries.Count(y => y.FullName.StartsWith(x.FullName, StringComparison.Ordinal)) == 1)
-                .Select(x => x.FullName)
-                .ToArray();
+                .Select(x => x.FullName)];
         }
     }
 }

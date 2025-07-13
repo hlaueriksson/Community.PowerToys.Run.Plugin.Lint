@@ -20,8 +20,8 @@ return await AnsiConsole.Status()
         var worker = new Worker(args, config, logger);
 
         // Events
-        worker.ValidationRule += (object? sender, ValidationRuleEventArgs e) => Log($"{e.Rule.Code.ToCode()} {e.Rule.Description}");
-        worker.ValidationMessage += (object? sender, ValidationMessageEventArgs e) => Log($" {"-".ToDimmed()} {e.Message}");
+        worker.ValidationRule += (sender, e) => Log($"{e.Rule.Code.ToCode()} {e.Rule.Description}");
+        worker.ValidationMessage += (sender, e) => Log($" {"-".ToDimmed()} {e.Message}");
 
         try
         {
