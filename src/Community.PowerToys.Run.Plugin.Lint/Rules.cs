@@ -303,11 +303,13 @@ public partial class PluginMetadataRules(Package package, Repository repository,
         if (!Exists(metadata.IcoPathDark)) yield return "IcoPathDark missing in package";
         if (!Exists(metadata.IcoPathLight)) yield return "IcoPathLight missing in package";
         if (DynamicLoadingUnnecessary(metadata.DynamicLoading)) yield return "DynamicLoading is unnecessary";
+        if (DynamicLoadingNecessary(metadata.DynamicLoading)) yield return "DynamicLoading is necessary for multiple assemblies";
 
         string? RootFolder() => package.ZipArchive.Entries.Select(x => x.FullName.Split('\\', '/')[0]).Distinct().FirstOrDefault();
         string? GetFilenameVersion() => FilenameVersionRegex().Match(package.FileInfo.Name).Value;
         bool Exists(string path) => package.ZipArchive.Entries.Any(x => NormalizePath(x.FullName).EndsWith(NormalizePath(path), StringComparison.Ordinal));
         bool DynamicLoadingUnnecessary(bool enabled) => enabled && package.ZipArchive.Entries.Count(x => x.Name.EndsWith(".dll", StringComparison.Ordinal)) == 1;
+        bool DynamicLoadingNecessary(bool enabled) => !enabled && package.ZipArchive.Entries.Count(x => x.Name.EndsWith(".dll", StringComparison.Ordinal)) > 1;
         string NormalizePath(string path) => path.Replace('\\', '/');
     }
 

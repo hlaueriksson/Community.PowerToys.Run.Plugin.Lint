@@ -308,9 +308,15 @@ namespace Community.PowerToys.Run.Plugin.Lint.Tests
                 "IcoPathLight missing in package",
                 "DynamicLoading is unnecessary");
 
-            package = new Package(@"..\..\..\Packages\Valid-0.87.0-x64.zip");
+            package = new Package(@"..\..\..\Packages\Dependencies-0.82.1-x64.zip");
             package.Load();
             var user = new User { login = "hlaueriksson" };
+            subject = new PluginMetadataRules(package, repository, user);
+            subject.Validate().Clean().Should().BeEquivalentTo(
+                "DynamicLoading is necessary for multiple assemblies");
+
+            package = new Package(@"..\..\..\Packages\Valid-0.87.0-x64.zip");
+            package.Load();
             subject = new PluginMetadataRules(package, repository, user);
             subject.Validate().Clean().Should().BeEmpty();
 
