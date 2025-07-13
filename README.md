@@ -138,6 +138,7 @@ Documentation:
 | `PTRUN1302` | Package content should be valid (`<package>`) |
 | | Package missing |
 | | Plugin folder missing |
+| | Folder is empty |
 | | Metadata "`plugin.json`" missing |
 | | Assembly "`.dll`" missing |
 | `PTRUN1303` | Package checksum should be valid (`<package>`) |
@@ -160,6 +161,7 @@ Documentation:
 | | IcoPathDark missing in package |
 | | IcoPathLight missing in package |
 | | DynamicLoading is unnecessary |
+| | DynamicLoading is necessary for multiple assemblies |
 | `PTRUN1402` | Package dependencies should be valid (`<package>`) |
 | | Package missing |
 | | Unnecessary dependency: `PowerToys.Common.UI.dll` |
@@ -167,12 +169,20 @@ Documentation:
 | | Unnecessary dependency: `PowerToys.Settings.UI.Lib.dll` |
 | | Unnecessary dependency: `Wox.Infrastructure.dll` |
 | | Unnecessary dependency: `Wox.Plugin.dll` |
+| | Unnecessary debug dependency: `PowerToys.Common.UI.pdb` |
+| | Unnecessary debug dependency: `PowerToys.ManagedCommon.pdb` |
+| | Unnecessary debug dependency: `PowerToys.Settings.UI.Lib.pdb` |
+| | Unnecessary debug dependency: `Wox.Infrastructure.pdb` |
+| | Unnecessary debug dependency: `Wox.Plugin.pdb` |
 | | Unnecessary dependency: `Newtonsoft.Json`, consider using `System.Text.Json` |
 | | Unnecessary dependency: `<dependency>`, already defined in Central Package Management (`Directory.Packages.props`) |
+| | Unnecessary Windows dependency: `Microsoft.Windows.SDK.NET.dll` |
+| | Unnecessary Windows dependency: `WinRT.Runtime.dll` |
 | `PTRUN1501` | Plugin assembly should be valid (`<package>`) |
 | | Assembly could not be validated |
 | | Target framework should be "`net9.0`" |
 | | Target platform should be "`windows`" |
+| | Assembly version does not match metadata (`plugin.json`) Version |
 | | Main.PluginID does not match metadata (`plugin.json`) ID |
 | `PTRUN2001` | Project content should be valid (`<project>`) |
 | | Project missing |
