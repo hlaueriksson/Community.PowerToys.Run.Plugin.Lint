@@ -186,7 +186,8 @@ namespace Community.PowerToys.Run.Plugin.Lint.Tests
             package.Load();
             subject = new PackageContentRules(package);
             subject.Validate().Clean().Should().BeEquivalentTo(
-                "Plugin folder missing");
+                "Plugin folder missing",
+                "Folder is empty");
 
             package = new Package(@"..\..\..\Packages\NoMetadata-0.82.1-x64.zip");
             package.Load();

@@ -208,12 +208,24 @@ public class PackageContentRules(Package package) : IRule
         var folders = RootFolders();
         if (folders.Length != 1) yield return "Plugin folder missing";
 
+        folders = EmptyFolders();
+        if (folders.Length > 0) yield return "Folder is empty";
+
         var files = Files();
         if (!files.Contains("plugin.json")) yield return $"Metadata {"plugin.json".ToQuote()} missing";
         if (!files.Any(x => x.EndsWith(".dll", StringComparison.Ordinal))) yield return $"Assembly {".dll".ToQuote()} missing";
 
         string[] RootFolders() => [.. package.ZipArchive.Entries.Select(x => x.FullName.Split('\\', '/')[0]).Distinct()];
         string[] Files() => [.. package.ZipArchive.Entries.Select(x => x.Name)];
+
+        string[] EmptyFolders()
+        {
+            var folders = package.ZipArchive.Entries.Where(x => x.FullName.EndsWith('/') || x.FullName.EndsWith('\\'));
+            return folders
+                .Where(x => package.ZipArchive.Entries.Count(y => y.FullName.StartsWith(x.FullName, StringComparison.Ordinal)) == 1)
+                .Select(x => x.FullName)
+                .ToArray();
+        }
     }
 }
 
