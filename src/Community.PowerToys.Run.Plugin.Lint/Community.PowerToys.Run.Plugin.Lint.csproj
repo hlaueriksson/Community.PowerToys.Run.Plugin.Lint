@@ -33,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="17.14.8" /><!--FIX: Snyk issue https://github.com/hlaueriksson/Community.PowerToys.Run.Plugin.Lint/actions/runs/16253525055/job/45886478269 -->
     <PackageReference Include="Microsoft.CodeAnalysis" Version="4.14.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.14.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.14.0" />
