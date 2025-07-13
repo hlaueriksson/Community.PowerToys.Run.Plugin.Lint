@@ -5,9 +5,9 @@
     <TargetFramework>net9.0</TargetFramework>
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>ptrun-lint</ToolCommandName>
-    <Version>0.4.1</Version>
+    <Version>0.5.0</Version>
     <PackageReleaseNotes>
-- Fix authorization with PersonalAccessToken
+- 5 new rules
 - Bump Directory.Packages.props.xml
     </PackageReleaseNotes>
     <Authors>Henrik Lau Eriksson</Authors>
