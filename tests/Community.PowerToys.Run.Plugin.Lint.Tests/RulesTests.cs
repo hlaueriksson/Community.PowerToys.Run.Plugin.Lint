@@ -347,7 +347,9 @@ namespace Community.PowerToys.Run.Plugin.Lint.Tests
                 "Unnecessary debug dependency: Wox.Infrastructure.pdb",
                 "Unnecessary debug dependency: Wox.Plugin.pdb",
                 "Unnecessary dependency: Newtonsoft.Json, consider using System.Text.Json",
-                "Unnecessary dependency: LazyCache, already defined in Central Package Management (Directory.Packages.props)");
+                "Unnecessary dependency: LazyCache, already defined in Central Package Management (Directory.Packages.props)",
+                "Unnecessary Windows dependency: Microsoft.Windows.SDK.NET.dll",
+                "Unnecessary Windows dependency: WinRT.Runtime.dll");
 
             package = new Package(@"..\..\..\Packages\Valid-0.87.0-x64.zip");
             package.Load();

@@ -338,7 +338,13 @@ public class PluginDependenciesRules(Package package) : IRule
             if (files.Contains($"{package}.dll")) yield return $"Unnecessary dependency: {package.ToDependency()}, already defined in Central Package Management {"Directory.Packages.props".ToFilename()}";
         }
 
+        foreach (var dependency in WindowsDependencies())
+        {
+            if (files.Contains(dependency)) yield return $"Unnecessary Windows dependency: {dependency.ToDependency()}";
+        }
+
         string[] Files() => [.. package.ZipArchive.Entries.Select(x => x.Name)];
+
         string[] PowerToysRunDependencies() => ["PowerToys.Common.UI.dll", "PowerToys.ManagedCommon.dll", "PowerToys.Settings.UI.Lib.dll", "Wox.Infrastructure.dll", "Wox.Plugin.dll"];
         string[] PowerToysRunDebugDependencies() => ["PowerToys.Common.UI.pdb", "PowerToys.ManagedCommon.pdb", "PowerToys.Settings.UI.Lib.pdb", "Wox.Infrastructure.pdb", "Wox.Plugin.pdb"];
         string[] PowerToysPackages()
@@ -350,6 +356,8 @@ public class PluginDependenciesRules(Package package) : IRule
                 .Select(x => x.Attribute("Include")?.Value)
                 .ToArray()!;
         }
+
+        string[] WindowsDependencies() => ["Microsoft.Windows.SDK.NET.dll", "WinRT.Runtime.dll"];
     }
 }
 
