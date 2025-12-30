@@ -356,6 +356,7 @@ namespace Community.PowerToys.Run.Plugin.Lint.Tests
                 "Unnecessary debug dependency: Wox.Plugin.pdb",
                 "Unnecessary dependency: Newtonsoft.Json, consider using System.Text.Json",
                 "Unnecessary dependency: LazyCache, already defined in Central Package Management (Directory.Packages.props)",
+                "Unnecessary dependency: Newtonsoft.Json, already defined in Central Package Management (Directory.Packages.props)",
                 "Unnecessary Windows dependency: Microsoft.Windows.SDK.NET.dll",
                 "Unnecessary Windows dependency: WinRT.Runtime.dll");
 
@@ -419,7 +420,9 @@ namespace Community.PowerToys.Run.Plugin.Lint.Tests
             subject = new ProjectDependenciesRules(project);
             subject.Validate().Clean().Should().BeEquivalentTo(
                 "Unnecessary dependency: Newtonsoft.Json, consider using System.Text.Json",
-                "Inconstant dependency version: LazyCache, use version \"2.4.0\" as defined in Central Package Management (Directory.Packages.props)");
+                "Inconstant dependency version: LazyCache, use version \"2.4.0\" as defined in Central Package Management (Directory.Packages.props)",
+                "Inconstant dependency version: Microsoft.Extensions.Caching.Abstractions, use version \"9.0.10\" as defined in Central Package Management (Directory.Packages.props)",
+                "Inconstant dependency version: Microsoft.Extensions.Caching.Memory, use version \"9.0.10\" as defined in Central Package Management (Directory.Packages.props)");
 
             Build(@"..\..\..\Projects\Valid");
             project = new Project(@"..\..\..\Projects\Valid");
