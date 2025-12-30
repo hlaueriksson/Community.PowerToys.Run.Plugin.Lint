@@ -5,9 +5,9 @@
     <TargetFramework>net10.0</TargetFramework>
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>ptrun-lint</ToolCommandName>
-    <Version>0.5.0</Version>
+    <Version>0.6.0</Version>
     <PackageReleaseNotes>
-- 5 new rules
+- Change target framework to net10.0
 - Bump Directory.Packages.props.xml
     </PackageReleaseNotes>
     <Authors>Henrik Lau Eriksson</Authors>
