@@ -9,7 +9,7 @@
 
 This is a `dotnet` tool that requires:
 
-- [.NET 9.0](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+- [.NET 10.0](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 
 ## Installation
 
